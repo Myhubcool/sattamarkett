@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>    
+    <title>Home</title>
+    <style>
+            /* Icon 1 */
+
+            .animated-icon1{
+            width: 30px;
+            height: 20px;
+            position: relative;
+            margin: 0px;
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+            -webkit-transition: .5s ease-in-out;
+            -moz-transition: .5s ease-in-out;
+            -o-transition: .5s ease-in-out;
+            transition: .5s ease-in-out;
+            cursor: pointer;
+            }
+            .orange {
+            background-color: #ffe0b2!important;
+            }        
+            .animated-icon1 span{
+            display: block;
+            position: absolute;
+            height: 3px;
+            width: 100%;
+            border-radius: 9px;
+            opacity: 1;
+            left: 0;
+            -webkit-transform: rotate(0deg);
+            -moz-transform: rotate(0deg);
+            -o-transform: rotate(0deg);
+            transform: rotate(0deg);
+            -webkit-transition: .25s ease-in-out;
+            -moz-transition: .25s ease-in-out;
+            -o-transition: .25s ease-in-out;
+            transition: .25s ease-in-out;
+            }
+
+            .animated-icon1 span {
+            background: #e65100;
+            }
+
+            .animated-icon1 span:nth-child(1) {
+            top: 0px;
+            }
+
+            .animated-icon1 span:nth-child(2) {
+            top: 10px;
+            }
+
+            .animated-icon1 span:nth-child(3) {
+            top: 20px;
+            }
+
+            .animated-icon1.open span:nth-child(1) {
+            top: 11px;
+            -webkit-transform: rotate(135deg);
+            -moz-transform: rotate(135deg);
+            -o-transform: rotate(135deg);
+            transform: rotate(135deg);
+            }
+
+            .animated-icon1.open span:nth-child(2) {
+            opacity: 0;            
+            }
+
+            .animated-icon1.open span:nth-child(3) {
+            top: 11px;
+            -webkit-transform: rotate(-135deg);
+            -moz-transform: rotate(-135deg);
+            -o-transform: rotate(-135deg);
+            transform: rotate(-135deg);
+            }           
+    </style>
+  </head>
+  <body>
+    <!--NavBar Code Start -->
+                <!--Navbar-->
+            <nav class="navbar navbar-light amber lighten-4 mb-4 orange">
+
+                    <!-- Navbar brand -->
+                    <a class="navbar-brand" href="#">ADMIN PANNEL</a>
+                
+                    <!-- Collapse button -->
+                    <button class="navbar-toggler first-button" type="button" data-toggle="collapse" data-target="#navbarSupportedContent20"
+                    aria-controls="navbarSupportedContent20" aria-expanded="false" aria-label="Toggle navigation">
+                    <div class="animated-icon1"><span></span><span></span><span></span></div>
+                    </button>
+                
+                    <!-- Collapsible content -->
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent20">
+                
+                    <!-- Links -->
+                    <ul class="navbar-nav mr-auto orange">
+                        <li class="nav-item active">                        
+                                <a class="nav-link" href="{% url 'amainhome' %}">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'allplayer' %}">All Players</a>
+                        </li>          
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'persninfo' %}">Personal Details</a>
+                        </li>        
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'sendreq' %}">Send Virtual Money</a>
+                        </li>                        
+                        <li class="nav-item">              
+                        <li class="nav-item">
+                                <a class="nav-link" href="{% url 'ahome' %}">Logout</a>
+                        </li>
+                    </ul>
+                    <!-- Links -->                
+                    </div>
+                    <!-- Collapsible content -->                
+                </nav>
+                <!--/.Navbar-->                          
+        <!--Main content start-->
+        <div class="container">             
+           <form method="POST" action="{% url 'jgameupload' %}" enctype="multipart/form-data">
+                {% csrf_token %}                                             
+                <div class="container text-center mt-5">                        
+                    <div class="row">                                                
+                        <div class="col-md-12">                            
+                            <div class="table-responsive">
+                                    <table class="table">
+                                        <h3 class="text-center">ENTER TODAY GAME PRICE</h3>
+                                      <thead>
+                                        <tr>                              
+                                          <th scope="col">S.NO</th>
+                                          <th scope="col">AMOUNT</th>
+                                          <th scope="col">REFUND</th>                                                                                                                     
+                                        </tr>
+                                      </thead>
+                                      <tbody>                                        
+                                        <tr> 
+                                          <td>1</td>    
+                                          <input type="hidden" name="gname" value="{{ gname }}">
+                                          <td><input type="text" name='gfirst' value="{{ gfirst }}" placeholder="{{ gfirst }}"></td>
+                                          <td><input type="text" name='gfirstp' value="{{ gfirstp }}" placeholder="{{ gfirstp }}"  ></td>                                          
+                                        </tr>
+                                        <tr> 
+                                            <td>2</td>                 
+                                                <td><input type="text" name='gsecond' value="{{ gsecond }}" placeholder="{{ gsecond }}"></td>
+                                                <td><input type="text" name='gsecondp' value="{{ gsecondp }}" placeholder="{{ gsecondp }}" ></td>                                                
+                                            </tr>
+                                        <tr> 
+                                            <td>3</td>                 
+                                                <td><input type="text" name='gthird' value="{{ gthird }}" placeholder="{{ gthird }}" ></td>
+                                                <td><input type="text" name='gthirdp' value="{{ gthirdp }}" placeholder="{{ gthirdp }}" ></td>                                                
+                                            </tr>
+                                        <tr> 
+                                            <td>4</td>                 
+                                                <td><input type="text" name='gfour' value="{{ gfour }}" placeholder="{{ gfour }}"></td>
+                                                <td><input type="text" name='gfourp' value="{{ gfourp }}" placeholder="{{ gfourp }}" ></td>                                                
+                                            </tr>
+                                        <tr> 
+                                            <td>5</td>                 
+                                                <td><input type="text" name='gfive' value="{{ gfive }}" placeholder="{{ gfive }}"></td>
+                                                <td><input type="text" name='gfivep' value="{{ gfivep }}" placeholder="{{ gfivep }}"></td>
+                                            </tr>
+                                        <tr>
+                                                <td></td>
+                                                <td></td>
+                                                <td><input class="btn btn-primary" type="submit" value='upload'></td>
+                                        </tr>
+                                      </tbody>
+                                </table>                                                                               
+                        </div>                        
+                    </form>                                 
+        </div>    
+        <!--Main content End-->   
+    <!--NavBar Code End -->    
+    <script>
+    $(document).ready(function () {
+        $('.first-button').on('click', function () {      
+          $('.animated-icon1').toggleClass('open');
+        });        
+      });
+    </script>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>

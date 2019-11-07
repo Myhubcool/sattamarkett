@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/javascript.util/0.12.12/javascript.util.min.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+    <title>ONLINE GAME</title>
+  </head>
+  <body>    
+    <!--login form code start-->
+    <form method="post" action="{% url 'register' %}" enctype="multipart/form-data">
+      {% csrf_token %}
+        <div class="container">
+            <div class="container">
+            <div class="container text-center mt-2"><h1>WELCOME TO ONLINE GAME</h1></div>
+        <div class="form-group mt-5">
+          <h4 class="text-center text-danger">{{ error }}</h4>
+          <b><p  class="text-center text-danger" id="returnmessage"></p></b>
+          <label for="username">Username</label>
+          <input type="text" class="form-control" name="username" id="username" placeholder="Enter Username" required>
+          <b><p  class="text-danger" id="usernameerror"></p></b>
+        </div>
+        <div class="form-group">
+          <label for="Password1">Password</label>
+          <input type="password" class="form-control" name="password1"  id="password1" placeholder="Enter Password" required >
+        </div>        
+        <div class="form-group">
+                <label for="Password2">Confirm Password</label>
+                <input type="password" class="form-control" name="password2"  id='password2' placeholder="Enter Confim Password" required>
+        </div>        
+        <div class="form-group">                
+                <label for="mobile">Mobile Number</label>
+                <input type="number" class="form-control" name="mobileno"  id="mobileno" placeholder="Enter Mobile Number" required>
+                <b><p  class="text-danger" id="numbererror"></p></b>
+        </div>        
+        <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" name="email"  id="email" placeholder="Enter email" required>
+        </div>        
+        <button type="submit" class="btn btn-primary" id="submit">Register</button>        
+        <a href='{% url "home" %}' class="btn btn-primary">Back</a>
+      </form>
+    </div>
+    </div>
+</div>
+    <script>      
+    $(document).ready(function() {
+      $("#submit").click(function() {
+      var username = $("#username").val();
+      var email = $("#email").val();
+      var mobno = $("#mobileno").val();
+      var password = $("#password1").val();
+      var conpassword = $("#password2").val();  
+      var usernameregx = /^[A-Za-z. ]{3,30}$/;      
+      $("#usernameerror").hide();    
+      $('#numbererror').hide();
+      $("#returnmessage").empty(); // To empty prev ious error/success message.
+      // Checking for blank fields.
+      //$("#returnmessage").hide();
+      if (username == '' || email == '' || mobno == '' || password == '' || conpassword == '') {      
+          $("#returnmessage").html('Please fill all details!');
+          $("#returnmessage").show();
+          return false;
+      }else if(!usernameregx.test(username)){
+        $('#usernameerror').html('Please Enter only characters and symbols')
+        $('#usernameerror').show();
+        return false;
+      }else if (mobno.length>=11 || mobno.length<=9){
+        $('#numbererror').html('Please Enter only 10 number')
+        $('#numbererror').show();
+        return false;
+      }
+      else{
+        $("#returnmessage").hide();
+        $('#numbererror').hide();
+        $("#usernameerror").hide();    
+        return true;
+      }
+      });
+      });
+
+      // function formval(){
+      //   var name = document.forms['formval']['username'];
+      //   var password = document.form['formval']['password1'];
+      //   var conpassword = document.form['formval']['password2'];
+      //   var mobile = document.form['formval']['mobileno'];
+      //   var usernamerez="^[a-zA-Z_-]{3,15}$";
+      //   if(name.value!=usernamerez){
+      //     window.alert("Please enter only character .");           
+      //     return false;
+      //   }
+      //   else{
+      //     return true;
+      //   }
+      // }
+    </script>
+      <!--login form code end-->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
